@@ -53,7 +53,7 @@ dependencies{
 ### Implementation in Activity:
 Create ``Permission_Manager`` object:
 ```java
-private Permission_Manager permission_manager;
+  private Permission_Manager permission_manager;
 ```
 
 Initialize ``Permission_Manager``:
@@ -91,4 +91,9 @@ Add Activity Result:
               public void onActivityResult(ActivityResult result) {
               }
    });
+```
+
+Ask for Permission:
+```java
+  permission_manager.getPermissions();
 ```
