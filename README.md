@@ -67,7 +67,8 @@ Add your permissions to permission`s list:
 ```java
   permission_manager.addPermissionToList(All_Permissions.CAMERA);
 ```
-* to add all permissions:
+* to add all permissions:  
+You can use: ``new String[]{All_Permissions.CAMERA , All_Permissions.CONTACS}`` or ``All_Permissions.ALL_PERMISSIONS``
 ```java
   permission_manager.setPermissionsList(All_Permissions.ALL_PERMISSIONS);
 ```
