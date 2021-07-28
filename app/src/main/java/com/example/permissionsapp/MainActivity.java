@@ -22,7 +22,6 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
 
-
     private MaterialButton main_BTN_done;
     private CheckBox main_SBTN_contacts;
     private CheckBox main_SBTN_camera;
@@ -55,10 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initPermissionManage() {
-        permission_manager = new Permission_Manager(this, MainActivity.this);
-        permission_manager.setRequestPermissionLauncher(requestPermissionLauncher);
-        permission_manager.setManuallyPermissionResultLauncher(manuallyPermissionResultLauncher);
-        permission_manager.initLaunchers();
+        permission_manager = new Permission_Manager(this, MainActivity.this,requestPermissionLauncher,manuallyPermissionResultLauncher);
     }
 
 
@@ -67,27 +63,27 @@ public class MainActivity extends AppCompatActivity {
             permission_manager.clearArrayList();
             permission_manager.clearGrantedPermissionList();
             if (main_SBTN_contacts.isChecked()) {
-                permission_manager.addToArrayList(All_Permissions.READ_CONTACTS);
+                permission_manager.addPermissionToList(All_Permissions.READ_CONTACTS);
             }
             if (main_SBTN_camera.isChecked()) {
-                permission_manager.addToArrayList(All_Permissions.CAMERA);
+                permission_manager.addPermissionToList(All_Permissions.CAMERA);
 
             }
             if (main_SBTN_location.isChecked()) {
-                permission_manager.addToArrayList(All_Permissions.LOCATION);
+                permission_manager.addPermissionToList(All_Permissions.LOCATION);
 
             }
             if (main_SBTN_microphone.isChecked()) {
-                permission_manager.addToArrayList(All_Permissions.MICROPHONE);
+                permission_manager.addPermissionToList(All_Permissions.MICROPHONE);
             }
             if (main_SBTN_calendar.isChecked()) {
-                permission_manager.addToArrayList(All_Permissions.READ_CALENDAR);
+                permission_manager.addPermissionToList(All_Permissions.READ_CALENDAR);
             }
             if (main_SBTN_sms.isChecked()) {
-                permission_manager.addToArrayList(All_Permissions.READ_SMS);
+                permission_manager.addPermissionToList(All_Permissions.READ_SMS);
             }
-            permission_manager.convertArrayListToStringArray();
             permission_manager.getPermissions();
+
         });
     }
 

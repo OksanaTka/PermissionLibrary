@@ -46,23 +46,17 @@ public class Permission_Manager {
     public Permission_Manager() {
     }
 
-    public Permission_Manager(Activity activity, Context context) {
+    public Permission_Manager(Activity activity, Context context,ActivityResultLauncher<String[]> requestPermissionLauncher,ActivityResultLauncher<Intent> manuallyPermissionResultLauncher) {
         this.context = context;
         this.activity = activity;
+        this.requestPermissionLauncher = requestPermissionLauncher;
+        this.manuallyPermissionResultLauncher = manuallyPermissionResultLauncher;
         manuallyPermissionMessage = new Dialog(this.context);
         selectedStrings = new ArrayList<>();
         grantedPermissionList = new ArrayList<>();
         initClass();
+        initLaunchers();
     }
-
-    public void setRequestPermissionLauncher(ActivityResultLauncher<String[]> requestPermissionLauncher) {
-        this.requestPermissionLauncher = requestPermissionLauncher;
-    }
-
-    public void setManuallyPermissionResultLauncher(ActivityResultLauncher<Intent> manuallyPermissionResultLauncher) {
-        this.manuallyPermissionResultLauncher = manuallyPermissionResultLauncher;
-    }
-
 
     public void clearArrayList() {
         selectedStrings.clear();
@@ -77,8 +71,13 @@ public class Permission_Manager {
         return grantedPermissionList;
     }
 
-    public void addToArrayList(String per) {
+    public void addPermissionToList(String per) {
         selectedStrings.add(per);
+    }
+
+
+    public void setPermissionsList(String[] permissionsList) {
+        this.permissionsList = permissionsList;
     }
 
     public void convertArrayListToStringArray() {
@@ -96,8 +95,11 @@ public class Permission_Manager {
     }
 
     public void getPermissions() {
+        convertArrayListToStringArray();
         requestPermissionLauncher.launch(permissionsList);
     }
+
+
 
     public void requestPermission(String permissionType) {
         switch (permissionType) {

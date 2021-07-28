@@ -1,3 +1,3 @@
 rootProject.name = "PermissionsApp"
 include ':app'
-include ':PermissionsLibrary'
+include ':PermissionLibrary'
