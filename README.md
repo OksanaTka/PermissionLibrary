@@ -1,6 +1,6 @@
 # PermissionLibrary  [![](https://jitpack.io/v/OksanaTka/PermissionLibrary.svg)](https://jitpack.io/#OksanaTka/PermissionLibrary)
 
-**Android Library for managing runtime permission.**
+**Android Library for managing runtime permissions.**
 
 
 
@@ -61,19 +61,19 @@ Initialize ``Permission_Manager``:
   permission_manager = new Permission_Manager(this, MainActivity.this,requestPermissionLauncher,manuallyPermissionResultLauncher);
 ```
 
-Add your permissions to permission`s list:  
+Add your permissions to list:  
 
-* to add single permission:
+* to add a single permission:
 ```java
   permission_manager.addPermissionToList(All_Permissions.CAMERA);
 ```
-* to add all permissions:  
+* to add multiple permissions:  
 You can use: ``new String[]{All_Permissions.CAMERA , All_Permissions.CONTACS}`` or ``All_Permissions.ALL_PERMISSIONS``
 ```java
   permission_manager.setPermissionsList(All_Permissions.ALL_PERMISSIONS);
 ```
 
-Add Request Permission:
+Implement ``ActivityResultLauncher<String[]>`` for request multiple permissions:
 ```java
   private ActivityResultLauncher<String[]> requestPermissionLauncher = registerForActivityResult(
       new ActivityResultContracts.RequestMultiplePermissions(), (Map<String, Boolean> isGranted) -> {
@@ -83,7 +83,7 @@ Add Request Permission:
    });
 ```
 
-Add Activity Result:
+Implement ``ActivityResultLauncher<Intent>`` for activity result:
 ```java
   private ActivityResultLauncher<Intent> manuallyPermissionResultLauncher = registerForActivityResult(
       new ActivityResultContracts.StartActivityForResult(),
@@ -94,7 +94,7 @@ Add Activity Result:
    });
 ```
 
-Ask for Permission:
+Request permissions:
 ```java
   permission_manager.getPermissions();
 ```
