@@ -87,6 +87,7 @@ public class Permission_Manager {
      */
     public void addPermissionToList(String permissionType) {
         selectedStrings.add(permissionType);
+        convertArrayListToStringArray();
     }
 
     /**
@@ -118,7 +119,6 @@ public class Permission_Manager {
      * Get permissions
      */
     public void getPermissions() {
-        convertArrayListToStringArray();
         requestPermissionLauncher.launch(permissionsList);
     }
 
