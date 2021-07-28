@@ -40,7 +40,7 @@ allprojects {
 Add the dependency:  
 ```groovy
 dependencies{
-	implementation 'com.github.OksanaTka:PermissionLibrary:0.2.0'
+	implementation 'com.github.OksanaTka:PermissionLibrary:v.3'
 }
 ```
 
