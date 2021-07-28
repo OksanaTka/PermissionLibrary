@@ -1,4 +1,4 @@
-# PermissionLibrary [![](https://jitpack.io/v/OksanaTka/PermissionLibrary.svg)](https://jitpack.io/#OksanaTka/PermissionLibrary)
+# PermissionLibrary  [![](https://jitpack.io/v/OksanaTka/PermissionLibrary.svg)](https://jitpack.io/#OksanaTka/PermissionLibrary)
 
 **Android Library for managing runtime permission.**
 
@@ -40,7 +40,7 @@ allprojects {
 Add the dependency:  
 ```groovy
 dependencies{
-	implementation 'com.github.OksanaTka:PermissionLibrary:0.1.0'
+	implementation 'com.github.OksanaTka:PermissionLibrary:0.2.0'
 }
 ```
 
