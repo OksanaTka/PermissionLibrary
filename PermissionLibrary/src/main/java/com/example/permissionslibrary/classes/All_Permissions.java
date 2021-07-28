@@ -2,6 +2,10 @@ package com.example.permissionslibrary.classes;
 
 import android.Manifest;
 
+/**
+ *  Class of all permissions in the library.
+ */
+
 public final class All_Permissions {
     public static final String LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     public static final String LOCATION_BACKGROUND = Manifest.permission.ACCESS_BACKGROUND_LOCATION;

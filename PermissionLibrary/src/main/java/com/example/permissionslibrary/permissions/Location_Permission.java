@@ -25,10 +25,6 @@ public class Location_Permission {
         location_permission = new String[1];
     }
 
-    public void getLocation() {
-        Log.d("LOCATION", "getLocation: SUCCESS !");
-    }
-
     public void getPermission() {
         requestLocationPermission();
     }
@@ -48,6 +44,9 @@ public class Location_Permission {
 
     }
 
+    /**
+     * request location permission
+     */
     public void requestLocationPermission() {
         boolean per1 = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
         boolean per2 = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
@@ -60,8 +59,6 @@ public class Location_Permission {
 
         } else if (!per3) {
             requestSecondLocationPermission();
-        } else {
-            getLocation();
         }
     }
 

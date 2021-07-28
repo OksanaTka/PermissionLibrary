@@ -21,7 +21,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    /**
+     * This activity is an example for of library use
+     */
     private MaterialButton main_BTN_done;
     private CheckBox main_SBTN_contacts;
     private CheckBox main_SBTN_camera;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //hide bar
         MyScreenUtils.hideSystemUI2(this);
 
 
@@ -53,11 +57,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Initialize Permission_Manager
+     */
     private void initPermissionManage() {
         permission_manager = new Permission_Manager(this, MainActivity.this,requestPermissionLauncher,manuallyPermissionResultLauncher);
     }
 
-
+    /**
+     *  read checkbox and ask for permission
+     */
     private void readCheckBox() {
         main_BTN_done.setOnClickListener(v -> {
             permission_manager.clearArrayList();
@@ -82,12 +91,16 @@ public class MainActivity extends AppCompatActivity {
             if (main_SBTN_sms.isChecked()) {
                 permission_manager.addPermissionToList(All_Permissions.READ_SMS);
             }
+
+
             permission_manager.getPermissions();
 
         });
     }
 
-
+    /**
+     *  Request Permission
+     */
     private ActivityResultLauncher<String[]> requestPermissionLauncher = registerForActivityResult(
             new ActivityResultContracts.RequestMultiplePermissions(), (Map<String, Boolean> isGranted) -> {
                 for (Map.Entry<String, Boolean> x : isGranted.entrySet()) {
@@ -96,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+    /**
+     *  Activity Result
+     */
     private ActivityResultLauncher<Intent> manuallyPermissionResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -105,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             });
+
 
     private void changeTextAndCheckBoxStatus(ArrayList<String> allGrantedPermissions) {
         for (String permissionType : allGrantedPermissions) {
@@ -156,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (!openApp) {
-            changeTextAndCheckBoxStatus(permission_manager.checkGrantedPermissionsOnStart());
+            changeTextAndCheckBoxStatus(permission_manager.checkGrantedPermissions());
             openApp = true;
         }
     }

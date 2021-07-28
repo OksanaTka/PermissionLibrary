@@ -23,10 +23,6 @@ public class SMS_Permission {
         SMS_PERMISSION = new String[]{All_Permissions.READ_SMS};
     }
 
-    public void readSMS() {
-        Log.d("READ_SMS", "readSMS: SUCCESS !");
-    }
-
     public void getPermission() {
         requestSMSPermission();
     }
@@ -35,12 +31,12 @@ public class SMS_Permission {
         this.requestSMSPermissionLauncher = requestSMSPermissionLauncher;
     }
 
+    /**
+     * request sms permission
+     */
     public void requestSMSPermission() {
         if (!(ContextCompat.checkSelfPermission(context, All_Permissions.READ_SMS) == PackageManager.PERMISSION_GRANTED)) {
             requestSMSPermissionLauncher.launch(SMS_PERMISSION);
-        } else {
-            readSMS();
         }
-
     }
 }

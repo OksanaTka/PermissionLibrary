@@ -25,10 +25,6 @@ public class Calendar_Permission {
         CALENDAR_PERMISSION = new String[]{All_Permissions.READ_CALENDAR};
     }
 
-    public void readCalendar() {
-        Log.d("READ_CALENDAR", "readCalendar: SUCCESS !");
-    }
-
     public void getPermission() {
         requestCalendarPermission();
     }
@@ -37,12 +33,12 @@ public class Calendar_Permission {
         this.requestCalendarPermissionLauncher = requestCalendarPermissionLauncher;
     }
 
+    /**
+     * request calendar permission
+     */
     public void requestCalendarPermission() {
         if (!(ContextCompat.checkSelfPermission(context, All_Permissions.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED)) {
             requestCalendarPermissionLauncher.launch(CALENDAR_PERMISSION);
-        } else {
-            readCalendar();
         }
-
     }
 }

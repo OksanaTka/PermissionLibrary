@@ -26,10 +26,6 @@ public class Camera_Permission {
         CAMERA_PERMISSION = new String[]{All_Permissions.CAMERA};
     }
 
-    public void openCamera() {
-        Log.d("CAMERA", "openCamera: SUCCESS !");
-    }
-
     public void getPermission() {
         requestCameraPermission();
     }
@@ -39,13 +35,12 @@ public class Camera_Permission {
         this.requestCameraPermissionLauncher = requestCameraPermissionLauncher;
     }
 
+    /**
+     * request camera permission
+     */
     public void requestCameraPermission() {
         if (!(ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)) {
             requestCameraPermissionLauncher.launch(CAMERA_PERMISSION);
-        } else {
-            openCamera();
         }
-
     }
-
 }

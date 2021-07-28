@@ -25,10 +25,6 @@ public class Contacts_Permission {
         CONTACTS__PERMISSION = new String[]{All_Permissions.READ_CONTACTS};
     }
 
-    public void getContacts() {
-        Log.d("CONTACTS", "getContacts: SUCCESS !");
-    }
-
     public void getPermission() {
         requestContactsPermission();
     }
@@ -38,12 +34,12 @@ public class Contacts_Permission {
         this.requestContactsPermissionLauncher = requestContactsPermissionLauncher;
     }
 
+    /**
+     * request contacts permission
+     */
     public void requestContactsPermission() {
         if (!(ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)) {
             requestContactsPermissionLauncher.launch(CONTACTS__PERMISSION);
-        } else {
-            getContacts();
         }
-
     }
 }

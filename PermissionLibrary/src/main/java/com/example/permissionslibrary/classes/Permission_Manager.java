@@ -20,8 +20,11 @@ import com.example.permissionslibrary.utils.Dialog;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Permission_Manager {
+/**
+ * Class to simplify the management of Android runtime permissions
+ */
 
+public class Permission_Manager {
 
     private Camera_Permission camera_permission;
     private Contacts_Permission contacts_permission;
@@ -46,6 +49,7 @@ public class Permission_Manager {
     public Permission_Manager() {
     }
 
+
     public Permission_Manager(Activity activity, Context context,ActivityResultLauncher<String[]> requestPermissionLauncher,ActivityResultLauncher<Intent> manuallyPermissionResultLauncher) {
         this.context = context;
         this.activity = activity;
@@ -58,10 +62,16 @@ public class Permission_Manager {
         initLaunchers();
     }
 
+    /**
+     * Clear all selected permissions from list
+     */
     public void clearArrayList() {
         selectedStrings.clear();
     }
 
+    /**
+     * Clear all granted permissions from list
+     */
     public void clearGrantedPermissionList() {
         grantedPermissionList.clear();
     }
@@ -71,15 +81,25 @@ public class Permission_Manager {
         return grantedPermissionList;
     }
 
-    public void addPermissionToList(String per) {
-        selectedStrings.add(per);
+    /**
+     * Add permission to list
+     * @param permissionType an android permission
+     */
+    public void addPermissionToList(String permissionType) {
+        selectedStrings.add(permissionType);
     }
 
-
+    /**
+     * Create String array of permissions
+     * @param permissionsList an android String array of permissions
+     */
     public void setPermissionsList(String[] permissionsList) {
         this.permissionsList = permissionsList;
     }
 
+    /**
+     * Convert from ArrayList to String array
+     */
     public void convertArrayListToStringArray() {
         permissionsList = selectedStrings.toArray(new String[0]);
     }
@@ -94,13 +114,19 @@ public class Permission_Manager {
 
     }
 
+    /**
+     * Get permissions
+     */
     public void getPermissions() {
         convertArrayListToStringArray();
         requestPermissionLauncher.launch(permissionsList);
     }
 
 
-
+    /**
+     * Check type of requested permission and get permission
+     * @param permissionType an android permission
+     */
     public void requestPermission(String permissionType) {
         switch (permissionType) {
             case All_Permissions.MICROPHONE:
@@ -142,9 +168,19 @@ public class Permission_Manager {
         sms_permission.setRequestSMSPermissionLauncher(requestPermissionLauncher);
     }
 
+    /**
+     * Get permission manually
+     * @param permissionType an android permission
+     */
     private void getPermissionManually(String permissionType) {
         manuallyPermissionMessage.getPermissionManually(permissionType, manuallyPermissionResultLauncher);
     }
+
+    /**
+     * Check if permissions is granted
+     * Get permission
+     * @param x permission type and its boolean status
+     */
 
     public void checkPermission(Map.Entry<String, Boolean> x) {
         if (x.getValue()) {
@@ -159,8 +195,11 @@ public class Permission_Manager {
         }
     }
 
-
-    public ArrayList<String> checkGrantedPermissionsOnStart() {
+    /**
+     *Check which permissions from all the permissions is granted.
+     * @return ArrayList of granted permissions
+     */
+    public ArrayList<String> checkGrantedPermissions() {
         ArrayList<String> grantedPermissionArray = new ArrayList<>();
         for (String permissionType : All_Permissions.ALL_PERMISSIONS
         ) {
@@ -170,5 +209,18 @@ public class Permission_Manager {
             }
         }
         return grantedPermissionArray;
+    }
+
+    /**
+     *Check if single permission is granted
+     * @param permissionType an android permission
+     * @return true/false
+     */
+    public boolean checkIfPermissionIsGranted(String permissionType) {
+            if (ContextCompat.checkSelfPermission(context, permissionType)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            }
+        return false;
     }
 }

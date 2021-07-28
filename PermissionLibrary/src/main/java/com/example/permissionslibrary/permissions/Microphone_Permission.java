@@ -3,7 +3,6 @@ package com.example.permissionslibrary.permissions;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.core.content.ContextCompat;
@@ -25,12 +24,8 @@ public class Microphone_Permission {
         MICROPHONE_PERMISSION = new String[]{All_Permissions.MICROPHONE};
     }
 
-    public void openMicrophone() {
-        Log.d("Microphone", "openMicrophone: SUCCESS !");
-    }
-
     public void getPermission() {
-        requestRecordPermission();
+        requestMicrophonePermission();
     }
 
 
@@ -38,14 +33,13 @@ public class Microphone_Permission {
         this.requestMicrophonePermissionLauncher = requestMicrophonePermissionLauncher;
     }
 
-    private void requestRecordPermission() {
+    /**
+     * request microphone permission
+     */
+    private void requestMicrophonePermission() {
         if (!(ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)) {
             requestMicrophonePermissionLauncher.launch(MICROPHONE_PERMISSION);
-        } else {
-            openMicrophone();
         }
-
-
     }
 
 }
