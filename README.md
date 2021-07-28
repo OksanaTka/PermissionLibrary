@@ -61,7 +61,7 @@ Initialize ``Permission_Manager``:
   permission_manager = new Permission_Manager(this, MainActivity.this,requestPermissionLauncher,manuallyPermissionResultLauncher);
 ```
 
-Add your permissions to list:  
+Add your permissions:  
 
 * to add a single permission:
 ```java
@@ -73,7 +73,7 @@ You can use: ``new String[]{All_Permissions.CAMERA , All_Permissions.CONTACS}`` 
   permission_manager.setPermissionsList(All_Permissions.ALL_PERMISSIONS);
 ```
 
-Implement ``ActivityResultLauncher<String[]>`` for request multiple permissions:
+Implement ``ActivityResultLauncher<String[]>`` for requesting multiple permissions:
 ```java
   private ActivityResultLauncher<String[]> requestPermissionLauncher = registerForActivityResult(
       new ActivityResultContracts.RequestMultiplePermissions(), (Map<String, Boolean> isGranted) -> {
